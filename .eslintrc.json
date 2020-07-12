@@ -11,6 +11,7 @@
   },
   "rules": {
     "no-console": "off",
-    "func-names": "off"
+    "func-names": "off",
+    "import/prefer-default-export": "off"
   }
 }
