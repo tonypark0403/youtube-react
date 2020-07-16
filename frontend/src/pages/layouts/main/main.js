@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Header from '../partials/header';
+import Footer from '../partials/footer';
 
 const Main = ({ children }) => {
   return (
     <>
-      <header>
-        <h1>YouTube</h1>
-      </header>
+      <Header />
       <main>{children}</main>
-      <footer>
-        <span>&copy; YouTube</span>
-      </footer>
+      <Footer />
     </>
   );
 };
