@@ -7,7 +7,17 @@ export const home = (req, res) => {
     ...res.locals,
   });
 };
-export const search = (req, res) => res.send('Search');
+export const search = (req, res) => {
+  const searchingBy = req.query.term;
+  res.json({
+    status: 'success',
+    data: {
+      pageTitle: 'Search',
+      searchingBy,
+    },
+    error: '',
+  });
+};
 export const videos = (req, res) => res.send('Videos');
 export const upload = (req, res) => res.send('Upload');
 export const videoDetail = (req, res) => res.send('Video Detail');

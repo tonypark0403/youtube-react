@@ -15,8 +15,9 @@ function App() {
     //   console.log(data);
     // })();
   }, []);
+  console.log(routes);
   return (
-    <Main name="tony">
+    <Main routes={routes}>
       <Switch>
         <Route exact path={routes.home} component={Home} />
         <Route exact path={routes.login} component={Login} />
