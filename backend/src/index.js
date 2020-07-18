@@ -1,3 +1,4 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import globalRouter from './routes/globalRouter';
 import userRouter from './routes/userRouter';
@@ -5,7 +6,9 @@ import videoRouter from './routes/videoRouter';
 import routes from './routes';
 import middlewares from './middlewares';
 
+dotenv.config();
 const app = express();
+const { PORT } = process.env;
 
 // middlewares
 middlewares(app);
@@ -16,6 +19,6 @@ app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
 // app.use(routes.temp, tempRouter);
 
-app.listen(5000, () => {
-  console.log(`welcome to my server, http://localhost:5000`);
+app.listen(PORT, () => {
+  console.log(`welcome to my server, http://localhost:${PORT}`);
 });

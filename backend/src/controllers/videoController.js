@@ -1,3 +1,5 @@
+import { videos as videoData } from '../models/video';
+
 export const home = (req, res) => {
   console.log(res.locals);
   res.json({
@@ -14,6 +16,7 @@ export const search = (req, res) => {
     data: {
       pageTitle: 'Search',
       searchingBy,
+      videos: videoData,
     },
     error: '',
   });
