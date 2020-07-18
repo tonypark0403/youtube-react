@@ -1,4 +1,31 @@
-export const join = (req, res) => res.send('Join');
+export const postJoin = (req, res) => {
+  const {
+    body: { name, email, password, password2 },
+  } = req;
+  if (password !== password2) {
+    res.status(400);
+    res.json({
+      status: 'error',
+      data: {
+        pageTitle: 'Join',
+      },
+      error: 'Bad Request',
+    });
+  } else {
+    res.json({
+      status: 'ok',
+      data: {
+        pageTitle: 'Join',
+        user: {
+          name,
+          email,
+        },
+      },
+      error: '',
+    });
+  }
+};
+
 export const login = (req, res) => res.send('Login');
 export const logout = (req, res) => res.send('Logout');
 export const users = (req, res) => res.send('Users');

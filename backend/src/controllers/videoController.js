@@ -3,7 +3,7 @@ import { videos as videoData } from '../models/video';
 export const home = (req, res) => {
   console.log(res.locals);
   res.json({
-    status: 'success',
+    status: 'ok',
     data: '',
     error: '',
     ...res.locals,
@@ -12,7 +12,7 @@ export const home = (req, res) => {
 export const search = (req, res) => {
   const searchingBy = req.query.term;
   res.json({
-    status: 'success',
+    status: 'ok',
     data: {
       pageTitle: 'Search',
       searchingBy,
