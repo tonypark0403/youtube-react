@@ -1,13 +1,16 @@
 import React from 'react';
 import { videos } from './data';
+import Video from '../../components/video';
 
 const Home = () => (
   <div className="videos">
     {videos.map(video => (
-      <>
-        <h1>{video.title}</h1>
-        <p>{video.description}</p>
-      </>
+      <Video
+        key={video.id}
+        videoFile={video.videoFile}
+        title={video.title}
+        views={video.views}
+      />
     ))}
   </div>
 );
