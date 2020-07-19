@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 const Video = ({ videoFile, title, views }) => (
   <div className="videoBlock">
-    <video className="videoBlock__thumbnail" src={videoFile} controls />
-    <h4 className="videoBlock__title">{title}</h4>
-    <h6 className="videoBlock__views">{views}</h6>
+    <a href="/videos/videoDetail">
+      <video className="videoBlock__thumbnail" src={videoFile} controls />
+      <h4 className="videoBlock__title">{title}</h4>
+      <h6 className="videoBlock__views">{views}</h6>
+    </a>
   </div>
 );
 

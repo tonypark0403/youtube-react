@@ -7,6 +7,7 @@ const Home = () => (
     {videos.map(video => (
       <Video
         key={video.id}
+        id={video.id}
         videoFile={video.videoFile}
         title={video.title}
         views={video.views}

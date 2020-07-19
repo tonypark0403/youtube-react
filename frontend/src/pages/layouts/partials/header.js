@@ -18,7 +18,7 @@ const Header = ({ routes, isAuthenticated = true }) => {
           {isAuthenticated ? (
             <>
               <li>
-                <Link to={routes.upload}>Upload</Link>
+                <Link to={`${routes.videos}${routes.upload}`}>Upload</Link>
               </li>
               <li>
                 <Link to={routes.userDetail}>Profile</Link>

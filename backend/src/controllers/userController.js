@@ -52,7 +52,17 @@ export const postLogin = (req, res) => {
     });
   }
 };
-export const logout = (req, res) => res.send('Logout');
+export const logout = (req, res) => {
+  res.json({
+    status: 'ok',
+    data: {
+      user: {
+        email: '',
+      },
+    },
+    error: '',
+  });
+};
 export const users = (req, res) => res.send('Users');
 export const userDetail = (req, res) => res.send('User Detail');
 export const editProfile = (req, res) => res.send('Edit Profile');
