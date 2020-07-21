@@ -1,5 +1,5 @@
-//import { videos as videoData } from '../models/video_hard_db';
 import Video from '../models/video';
+// import { videos as videoData } from '../models/video_hard_db';
 
 export const home = async (req, res) => {
   console.log(res.locals);

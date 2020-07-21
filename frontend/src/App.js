@@ -4,7 +4,8 @@ import axios from 'axios';
 import Main from './pages/layouts/main';
 import Home from './pages/home';
 import Login from './pages/login';
-import Search from './pages/search/search';
+import Search from './pages/search/';
+import Upload from './pages/upload/';
 
 function App() {
   const [routes, setRoutes] = useState({});
@@ -26,6 +27,11 @@ function App() {
           exact
           path={`${routes.videos}${routes.search}`}
           render={() => <Search routes={routes} />}
+        />
+        <Route
+          exact
+          path={`${routes.vidoes}${routes.upload}`}
+          component={Upload}
         />
       </Switch>
     </Main>
