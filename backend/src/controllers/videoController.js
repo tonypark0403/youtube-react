@@ -1,22 +1,26 @@
-import { videos as videoData } from '../models/video';
+//import { videos as videoData } from '../models/video_hard_db';
+import Video from '../models/video';
 
-export const home = (req, res) => {
+export const home = async (req, res) => {
   console.log(res.locals);
+  const videos = await Video.find();
   res.json({
     status: 'ok',
-    data: '',
+    data: { videos },
     error: '',
     ...res.locals,
   });
 };
-export const search = (req, res) => {
+
+export const search = async (req, res) => {
   const searchingBy = req.query.term;
+  const videos = await Video.find({ title: searchingBy });
   res.json({
     status: 'ok',
     data: {
       pageTitle: 'Search',
       searchingBy,
-      videos: videoData,
+      videos,
     },
     error: '',
   });
