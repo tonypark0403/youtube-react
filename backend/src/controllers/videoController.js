@@ -26,18 +26,24 @@ export const search = async (req, res) => {
   });
 };
 export const videos = (req, res) => res.send('Videos');
-export const postUpload = (req, res) => {
+export const postUpload = async (req, res) => {
   const {
-    body: { file, title, description },
+    body: { title, description },
+    file: { path },
   } = req;
   // To Do: Upload and save video
-  console.log(file, title, description);
-  const videoId = 324393;
+  console.log(path, title, description);
+  const newVideo = await Video.create({
+    fileUrl: path,
+    title,
+    description,
+  });
+
   res.json({
     status: 'ok',
     data: {
       pageTitle: 'Video Detail',
-      videoId,
+      videoId: newVideo._id,
     },
     error: '',
   });

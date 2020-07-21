@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Header from '../partials/header';
 import Footer from '../partials/footer';
 
-const Main = ({ routes, children }) => {
+const Main = ({ children }) => {
   return (
     <>
-      <Header routes={routes} />
+      <Header />
       <main>{children}</main>
       <Footer />
     </>
@@ -14,7 +14,6 @@ const Main = ({ routes, children }) => {
 };
 
 Main.propTypes = {
-  routes: PropTypes.object,
   children: PropTypes.object.isRequired,
 };
 

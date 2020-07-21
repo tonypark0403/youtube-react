@@ -1,38 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
-import axios from 'axios';
+import React from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Main from './pages/layouts/main';
 import Home from './pages/home';
 import Login from './pages/login';
 import Search from './pages/search/';
 import Upload from './pages/upload/';
+import EditVideo from './pages/edit-video';
+import UserDetail from './pages/user-detail';
 
 function App() {
-  const [routes, setRoutes] = useState({});
-  // let data;
-  useEffect(() => {
-    axios.get('http://localhost:5000/').then(res => setRoutes(res.data.routes));
-    // (async function () {
-    //   data = await axios.get('http://localhost:5000');
-    //   console.log(data);
-    // })();
-  }, []);
-  console.log(routes);
   return (
-    <Main routes={routes}>
+    <Main>
       <Switch>
-        <Route exact path={routes.home} component={Home} />
-        <Route exact path={routes.login} component={Login} />
-        <Route
-          exact
-          path={`${routes.videos}${routes.search}`}
-          render={() => <Search routes={routes} />}
-        />
-        <Route
-          exact
-          path={`${routes.vidoes}${routes.upload}`}
-          component={Upload}
-        />
+        <Route exact path="/" component={Home} />
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/users/:id" component={UserDetail} />
+        <Route exact path="/videos/search" component={Search} />
+        <Route exact path="/videos/upload" component={Upload} />
+        <Route exact path="/videos/:id" component={EditVideo} />
+        <Redirect from="*" to="/" />
       </Switch>
     </Main>
   );

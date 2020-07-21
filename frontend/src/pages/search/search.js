@@ -1,21 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import axios from 'axios';
 import Video from '../../components/video';
 const searchingBy = 'movie';
 
-const Search = ({ routes }) => {
+const Search = () => {
   // get data from server
   const [videos, setVideos] = useState([]);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000${routes.videos}${routes.search}`)
+      .get(`http://localhost:5000/videos/search`)
       .then(res => setVideos(res.data.data.videos));
     // (async function () {
     //   data = await axios.get('http://localhost:5000');
     //   console.log(data);
     // })();
-  }, [routes]);
+  }, []);
   return (
     <>
       <div className="search__header">
@@ -34,10 +33,6 @@ const Search = ({ routes }) => {
       </div>
     </>
   );
-};
-
-Search.propTypes = {
-  routes: PropTypes.object.isRequired,
 };
 
 export default Search;

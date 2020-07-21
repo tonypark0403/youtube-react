@@ -1,21 +1,31 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const Upload = () => {
-  const fileRef = useState(React.createRef());
+  const history = useHistory();
+  const [file, setFile] = useState(null);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log({
-      title,
-      description,
-      file: fileRef.current.files[0],
+    const formData = new FormData();
+    formData.append('videoFile', file);
+    formData.append('title', title);
+    formData.append('description', description);
+    axios.post('http://localhost:5000/videos/upload', formData).then(res => {
+      if (res.data.status === 'ok') {
+        setFile(null);
+        setTitle('');
+        setDescription('');
+        history.push(`/videos/${res.data.data.videoId}`);
+      }
     });
   };
 
   const handleChange = event => {
-    const { name, value } = event.target;
+    const { name, value, files } = event.target;
     switch (name) {
       case 'title':
         setTitle(value);
@@ -23,18 +33,23 @@ const Upload = () => {
       case 'description':
         setDescription(value);
         break;
+      case 'file':
+        setFile(files[0]);
+      default:
     }
   };
+
   return (
     <div className="form-container">
-      <form action={`/videos/upload`} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="file">Video File</label>
         <input
           type="file"
           id="file"
           name="file"
-          ref={fileRef}
+          files={[file]}
           accept="video/*"
+          onChange={handleChange}
           required
         />
         <input
@@ -49,10 +64,9 @@ const Upload = () => {
           name="description"
           placeholder="Description"
           onChange={handleChange}
+          value={description}
           required
-        >
-          {description}
-        </textarea>
+        ></textarea>
         <input type="submit" value="Update Video" />
       </form>
     </div>
