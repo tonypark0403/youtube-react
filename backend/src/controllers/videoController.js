@@ -1,5 +1,4 @@
-import Video from '../models/video';
-// import { videos as videoData } from '../models/video_hard_db';
+import { returnNormalJson } from '../utils';
 
 export const home = async (req, res) => {
   console.log(res.locals);
@@ -31,6 +30,7 @@ export const postUpload = async (req, res) => {
     body: { title, description },
     file: { path },
   } = req;
+
   // To Do: Upload and save video
   console.log(path, title, description);
   const newVideo = await Video.create({
@@ -39,14 +39,12 @@ export const postUpload = async (req, res) => {
     description,
   });
 
-  res.json({
-    status: 'ok',
-    data: {
-      pageTitle: 'Video Detail',
-      videoId: newVideo._id,
-    },
-    error: '',
-  });
+  console.log(newVideo);
+  const data = {
+    pageTitle: 'Video Detail',
+    videoId: newVideo._id,
+  };
+  returnNormalJson(res, data);
 };
 export const videoDetail = (req, res) => res.send('Video Detail');
 export const editVideo = (req, res) => res.send('Edit Video');
