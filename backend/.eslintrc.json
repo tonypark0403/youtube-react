@@ -12,7 +12,6 @@
   "rules": {
     "no-console": "off",
     "func-names": "off",
-    "import/prefer-default-export": "off",
     "no-underscore-dangle": "off"
   }
 }
