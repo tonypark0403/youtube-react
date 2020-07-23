@@ -1,3 +1,4 @@
+import Video from '../models/video';
 import { returnNormalJson } from '../utils';
 
 export const home = async (req, res) => {

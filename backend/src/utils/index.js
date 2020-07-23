@@ -8,7 +8,7 @@ export const returnNormalJson = (res, data, statusCode = 200) => {
 
 export const returnErrorJson = (res, error, statusCode = 400) => {
   return res.json({
-    status: 'ok',
+    status: 'error',
     data: null,
     error,
   });

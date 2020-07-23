@@ -35,6 +35,7 @@ const Upload = () => {
         break;
       case 'file':
         setFile(files[0]);
+        break;
       default:
     }
   };

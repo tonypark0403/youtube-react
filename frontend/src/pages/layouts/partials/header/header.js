@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Header = ({ isAuthenticated = true, id = 123 }) => {
+const Header = ({ isAuthenticated = true, id = '123' }) => {
   return (
     <div className="header">
       <div className="header__column">
@@ -42,6 +42,7 @@ const Header = ({ isAuthenticated = true, id = 123 }) => {
 
 Header.propTypes = {
   isAuthenticated: PropTypes.bool,
+  id: PropTypes.string,
 };
 
 export default Header;
