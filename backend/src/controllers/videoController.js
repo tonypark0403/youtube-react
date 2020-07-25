@@ -4,26 +4,25 @@ import { returnNormalJson } from '../utils';
 export const home = async (req, res) => {
   console.log(res.locals);
   const videos = await Video.find();
-  res.json({
-    status: 'ok',
-    data: { videos },
-    error: '',
+  const data = {
+    videos,
     ...res.locals,
-  });
+  };
+  returnNormalJson(res, data, 200);
 };
 
 export const search = async (req, res) => {
   const searchingBy = req.query.term;
   const videos = await Video.find({ title: searchingBy });
-  res.json({
-    status: 'ok',
-    data: {
+  returnNormalJson(
+    res,
+    {
       pageTitle: 'Search',
       searchingBy,
       videos,
     },
-    error: '',
-  });
+    200,
+  );
 };
 export const videos = (req, res) => res.send('Videos');
 export const postUpload = async (req, res) => {

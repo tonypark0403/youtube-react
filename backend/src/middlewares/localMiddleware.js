@@ -6,6 +6,20 @@ export const uploadVideo = multerVideo.single('videoFile');
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = 'YouTube';
+  res.locals.isAuthenticated = false;
   res.locals.routes = routes;
   next();
 };
+
+/*
+
+  res = {
+    locals: {
+      siteName: 'YouTube',
+      isAuthenticated: false,
+      routes
+    }
+  }
+
+
+*/

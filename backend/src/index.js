@@ -16,9 +16,9 @@ middlewares(app);
 
 // routing
 app.use('/uploads', express.static('uploads/'));
-app.use(routes.home, globalRouter);
-app.use(routes.users, userRouter);
-app.use(routes.videos, videoRouter);
+app.use(routes.home, globalRouter); // "/"
+app.use(routes.users, userRouter); // "/users"
+app.use(routes.videos, videoRouter); // "/videos"
 // app.use(routes.temp, tempRouter);
 
 app.listen(PORT, () => {
