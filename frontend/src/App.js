@@ -2,6 +2,7 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Main from './pages/layouts/main';
 import Home from './pages/home';
+import Join from './pages/join';
 import Login from './pages/login';
 import Search from './pages/search/';
 import Upload from './pages/upload/';
@@ -13,6 +14,7 @@ function App() {
     <Main>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route exact path="/join" component={Join} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/users/:id" component={UserDetail} />
         <Route exact path="/videos/search" component={Search} />
