@@ -1,4 +1,6 @@
+import passport from 'passport';
 import User from '../models/user';
+import { returnNormalJson, returnErrorJson } from '../utils';
 
 export const postJoin = async (req, res) => {
   const {
@@ -6,14 +8,7 @@ export const postJoin = async (req, res) => {
   } = req;
   console.log(name, email, password, password2);
   if (password !== password2) {
-    res.status(400);
-    res.json({
-      status: 'error',
-      data: {
-        pageTitle: 'Join',
-      },
-      error: 'Password not matched',
-    });
+    returnErrorJson(res, { error: 'Password not matched' }, 400);
   } else {
     try {
       const user = await User({
@@ -22,46 +17,29 @@ export const postJoin = async (req, res) => {
       });
       await User.register(user, password);
       console.log(user);
-      res.json({
-        status: 'ok',
-        data: {
-          pageTitle: 'Join',
-          user,
-        },
-        error: '',
-      });
+      const token = user.getToken();
+      returnNormalJson(res, { user: { name, email, token } }, 200);
     } catch (error) {
       console.log(error);
     }
   }
 };
 
-export const postLogin = (req, res) => {
-  const {
-    body: { email, password },
-  } = req;
-  if (email === 'test@test.com' && password === 'test') {
-    res.json({
-      status: 'ok',
-      data: {
-        pageTitle: 'Login',
-        user: {
-          email,
-        },
-      },
-      error: '',
-    });
-  } else {
-    res.status(400);
-    res.json({
-      status: 'error',
-      data: {
-        pageTitle: 'Login',
-      },
-      error: 'Bad Request',
-    });
-  }
+export const postLogin = (req, res, next) => {
+  console.log(req.body);
+  passport.authenticate('local', (err, passportUser, info) => {
+    console.log(passportUser);
+    const { name, email } = passportUser;
+    if (passportUser) {
+      // eslint-disable-next-line no-param-reassign
+      const token = passportUser.getToken();
+      returnNormalJson(res, { user: { name, email, token } }, 200);
+    } else {
+      returnErrorJson(res, { message: 'bad request' }, 400);
+    }
+  })(req, res, next);
 };
+
 export const logout = (req, res) => {
   res.json({
     status: 'ok',
@@ -72,6 +50,10 @@ export const logout = (req, res) => {
     },
     error: '',
   });
+};
+
+export const check = (req, res) => {
+  res.send('test');
 };
 export const users = (req, res) => res.send('Users');
 export const userDetail = (req, res) => res.send('User Detail');

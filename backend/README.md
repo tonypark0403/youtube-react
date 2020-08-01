@@ -11,3 +11,12 @@
 ### features
 
 - [x] applied middlewares(helmet, body parser, morgan)
+- [x] implemented CRUD service for user
+
+### studying
+
+```
+    1. request(url, method, data)
+    2. server - index.js => middleware check => router check => controller => model => controller => response
+    3. for authorization => before controller, call auth.required
+```
