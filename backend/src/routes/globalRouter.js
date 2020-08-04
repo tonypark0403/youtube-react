@@ -10,8 +10,19 @@ const globalRouter = express.Router();
 globalRouter.get(routes.check, userController.check);
 globalRouter.get(routes.home, videoController.home);
 globalRouter.get(routes.search, videoController.search);
-globalRouter.post(routes.join, userController.postJoin);
-globalRouter.post(routes.login, passportAuth, userController.afterLogin);
+globalRouter.post(
+  routes.join,
+  userController.postJoin,
+  passportAuth,
+  userController.afterLogin,
+  userController.check,
+);
+globalRouter.post(
+  routes.login,
+  passportAuth,
+  userController.afterLogin,
+  userController.check,
+);
 globalRouter.get(routes.logout, userController.logout);
 
 export default globalRouter;
