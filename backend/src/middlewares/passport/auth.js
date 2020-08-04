@@ -1,4 +1,5 @@
 import jwt from 'express-jwt';
+import passport from 'passport';
 
 const getTokenFromHeaders = req => {
   const {
@@ -12,6 +13,10 @@ const getTokenFromHeaders = req => {
   }
   return null;
 };
+
+export const passportAuth = passport.authenticate('local', {
+  failureRedirect: '/error',
+});
 
 const auth = {
   required: jwt({

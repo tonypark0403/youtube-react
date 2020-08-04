@@ -25,19 +25,16 @@ export const postJoin = async (req, res) => {
   }
 };
 
-export const postLogin = (req, res, next) => {
-  console.log(req.body);
-  passport.authenticate('local', (err, passportUser, info) => {
-    console.log(passportUser);
-    const { name, email } = passportUser;
-    if (passportUser) {
-      // eslint-disable-next-line no-param-reassign
-      const token = passportUser.getToken();
-      returnNormalJson(res, { user: { name, email, token } }, 200);
-    } else {
-      returnErrorJson(res, { message: 'bad request' }, 400);
-    }
-  })(req, res, next);
+export const afterLogin = (req, res, next) => {
+  console.log('afterLogin:', req.user);
+  const { user } = req;
+  const { name, email } = user;
+  if (user) {
+    const token = user.getToken();
+    returnNormalJson(res, { user: { name, email, token } }, 200);
+  } else {
+    returnErrorJson(res, { message: 'bad request' }, 400);
+  }
 };
 
 export const logout = (req, res) => {
