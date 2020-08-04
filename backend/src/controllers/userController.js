@@ -50,7 +50,21 @@ export const logout = (req, res) => {
 };
 
 export const check = (req, res) => {
-  res.send('test');
+  let data;
+  if (res.locals.isAuthenticated) {
+    data = {
+      name: req.user.name,
+      email: req.user.email,
+      isAuthenticated: res.locals.isAuthenticated,
+    };
+    returnNormalJson(res, data, 200);
+  } else {
+    data = {
+      message: 'Not authorized',
+      isAuthenticated: res.locals.isAuthenticated,
+    };
+    returnErrorJson(res, data, 401);
+  }
 };
 export const users = (req, res) => res.send('Users');
 export const userDetail = (req, res) => res.send('User Detail');
