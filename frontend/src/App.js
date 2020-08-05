@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Main from './pages/layouts/main';
 import Home from './pages/home';
@@ -10,19 +10,30 @@ import EditVideo from './pages/edit-video';
 import UserDetail from './pages/user-detail';
 
 function App() {
+  const [isAuth, setAuth] = useState(false);
+  const privateRouter = () => (
+    <Switch>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/users/:id" component={UserDetail} />
+      <Route exact path="/videos/search" component={Search} />
+      <Route exact path="/videos/upload" component={Upload} />
+      <Route exact path="/videos/:id" component={EditVideo} />
+      <Redirect from="*" to="/" />
+    </Switch>
+  );
+  const publicRouter = () => (
+    <Switch>
+      <Route exact path="/join" component={Join} />
+      <Route
+        exact
+        path="/login"
+        render={props => <Login {...props} setAuth={setAuth} />}
+      />
+      <Redirect from="*" to="/login" />
+    </Switch>
+  );
   return (
-    <Main>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/join" component={Join} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/users/:id" component={UserDetail} />
-        <Route exact path="/videos/search" component={Search} />
-        <Route exact path="/videos/upload" component={Upload} />
-        <Route exact path="/videos/:id" component={EditVideo} />
-        <Redirect from="*" to="/" />
-      </Switch>
-    </Main>
+    <Main isAuth={isAuth}>{isAuth ? privateRouter() : publicRouter()}</Main>
   );
 }
 

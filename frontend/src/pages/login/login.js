@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import SocialLogin from '../social-login';
 import { useHistory } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setAuth }) => {
   const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,6 +28,7 @@ const Login = () => {
     };
     fetch('http://localhost:5000/login', {
       method: 'post',
+      credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -37,6 +39,7 @@ const Login = () => {
       .then(res => {
         console.log('from backend data:', res);
         if (res.status === 'ok') {
+          setAuth(res.data.isAuthenticated);
           setEmail('');
           setPassword('');
           setTimeout(() => {
@@ -67,6 +70,10 @@ const Login = () => {
       </form>
     </div>
   );
+};
+
+Login.propTypes = {
+  setAuth: PropTypes.func.isRequired,
 };
 
 export default Login;

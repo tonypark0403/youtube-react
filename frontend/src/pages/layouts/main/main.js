@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import Header from '../partials/header/header';
 import Footer from '../partials/footer';
 
-const Main = ({ children }) => {
+const Main = ({ isAuth, children }) => {
   return (
     <>
-      <Header />
+      <Header isAuth={isAuth} />
       <main>{children}</main>
       <Footer />
     </>
@@ -14,6 +14,7 @@ const Main = ({ children }) => {
 };
 
 Main.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
   children: PropTypes.object.isRequired,
 };
 

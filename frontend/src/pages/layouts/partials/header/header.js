@@ -1,20 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
-const Header = ({ id = '123' }) => {
-  const [isAuthenticated, setAuthenticated] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:5000/')
-      .then(res => res.data)
-      .then(res => {
-        // console.log(res.data.isAuthenticated);
-        setAuthenticated(res.data.isAuthenticated);
-      });
-  }, []);
+const Header = ({ isAuth, id = '123' }) => {
   return (
     <div className="header">
       <div className="header__wrapper">
@@ -28,7 +16,7 @@ const Header = ({ id = '123' }) => {
         </div>
         <div className="header__column">
           <ul>
-            {isAuthenticated ? (
+            {isAuth ? (
               <>
                 <li>
                   <Link to="/videos/upload">Upload</Link>
@@ -55,6 +43,7 @@ const Header = ({ id = '123' }) => {
 };
 
 Header.propTypes = {
+  isAuth: PropTypes.bool.isRequired,
   id: PropTypes.string,
 };
 

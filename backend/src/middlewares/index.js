@@ -22,7 +22,7 @@ export default app => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(cookieParser());
 
-  app.use(cors());
+  app.use(cors({ credentials: true, origin: 'http://localhost:3000' }));
   app.use(
     session({
       cookie: {
