@@ -11,10 +11,7 @@ const EditVideo = () => {
         <textarea name="description" placeholder="Description"></textarea>
         <input type="submit" value="Update Video" />
       </form>
-      <Link
-        className="form-container__link form-container__link--delete"
-        to="/videos/deleteVideo"
-      >
+      <Link className="form-container__link" to={`/videos/deleteVideo/${id}`}>
         Delete Video
       </Link>
     </div>

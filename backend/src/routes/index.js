@@ -1,6 +1,7 @@
 // Global
 const HOME = '/';
 const JOIN = '/join';
+const CHECK = '/check';
 const LOGIN = '/login';
 const LOGOUT = '/logout';
 const SEARCH = '/search';
@@ -23,6 +24,7 @@ const DELETE_VIDEO = '/:id/delete';
 const routes = {
   home: HOME,
   join: JOIN,
+  check: CHECK,
   login: LOGIN,
   logout: LOGOUT,
   search: SEARCH,
