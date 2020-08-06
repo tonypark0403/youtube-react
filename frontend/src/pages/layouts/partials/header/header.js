@@ -24,6 +24,9 @@ const Header = ({ isAuth, id = '123' }) => {
                 <li>
                   <Link to={`/users/${id}`}>Profile</Link>
                 </li>
+                <li>
+                  <Link to={`/logout`}>Logout</Link>
+                </li>
               </>
             ) : (
               <>

@@ -39,15 +39,8 @@ export const afterLogin = (req, res, next) => {
 };
 
 export const logout = (req, res) => {
-  res.json({
-    status: 'ok',
-    data: {
-      user: {
-        email: '',
-      },
-    },
-    error: '',
-  });
+  req.logout();
+  returnNormalJson(res, 'logout successfully');
 };
 
 export const check = (req, res) => {

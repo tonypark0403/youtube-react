@@ -23,7 +23,9 @@ app.use(routes.home, globalRouter); // "/"
 app.use(routes.users, userRouter); // "/users"
 app.use(routes.videos, videoRouter); // "/videos"
 // app.use(routes.temp, tempRouter);
-
+app.use((req, res, next) => {
+  res.send('no urls, bad request');
+});
 app.listen(PORT, () => {
   console.log(`welcome to my server, http://localhost:${PORT}`);
 });

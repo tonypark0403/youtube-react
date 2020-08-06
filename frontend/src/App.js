@@ -8,12 +8,18 @@ import Search from './pages/search/';
 import Upload from './pages/upload/';
 import EditVideo from './pages/edit-video';
 import UserDetail from './pages/user-detail';
+import Logout from './pages/logout';
 
 function App() {
   const [isAuth, setAuth] = useState(false);
   const privateRouter = () => (
     <Switch>
       <Route exact path="/" component={Home} />
+      <Route
+        exact
+        path="/logout"
+        render={props => <Logout {...props} setAuth={setAuth} />}
+      />
       <Route exact path="/users/:id" component={UserDetail} />
       <Route exact path="/videos/search" component={Search} />
       <Route exact path="/videos/upload" component={Upload} />
