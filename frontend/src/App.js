@@ -29,7 +29,11 @@ function App() {
   );
   const publicRouter = () => (
     <Switch>
-      <Route exact path="/join" component={Join} />
+      <Route
+        exact
+        path="/join"
+        render={props => <Join {...props} setAuth={setAuth} />}
+      />
       <Route
         exact
         path="/login"

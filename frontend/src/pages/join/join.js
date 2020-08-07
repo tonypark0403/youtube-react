@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import SocialLogin from '../social-login';
-import { useHistory } from 'react-router-dom';
 
-const Join = () => {
-  const history = useHistory();
+const Join = ({ setAuth }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -52,9 +51,7 @@ const Join = () => {
           setEmail('');
           setPassword('');
           setPassword2('');
-          setTimeout(() => {
-            history.push('/');
-          }, 1000);
+          setAuth(true);
         }
       });
   };
@@ -94,6 +91,10 @@ const Join = () => {
       </form>
     </div>
   );
+};
+
+Join.propTypes = {
+  setAuth: PropTypes.func.isRequired,
 };
 
 export default Join;
