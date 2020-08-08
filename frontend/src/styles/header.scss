@@ -47,5 +47,11 @@
         }
       }
     }
+    .header__item {
+      color: white;
+      &:hover {
+        color: purple;
+      }
+    }
   }
 }

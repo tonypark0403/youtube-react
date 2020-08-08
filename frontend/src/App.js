@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Main from './pages/layouts/main';
 import Home from './pages/home';
@@ -12,6 +12,22 @@ import Logout from './pages/logout';
 
 function App() {
   const [isAuth, setAuth] = useState(false);
+
+  useEffect(() => {
+    fetch('http://localhost:5000/check', {
+      credentials: 'include',
+    })
+      .then(res => res.json())
+      .then(res => {
+        console.log('from backend data:', res);
+        if (res.status === 'ok') {
+          setAuth(res.data.isAuthenticated); // true
+          // setEmail(''); // causing error that Can't perform a React state update on an unmounted component. This is a no-op
+          // setPassword('');
+        }
+      });
+  }, []);
+
   const privateRouter = () => (
     <Switch>
       <Route exact path="/" component={Home} />

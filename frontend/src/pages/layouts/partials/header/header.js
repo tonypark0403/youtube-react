@@ -7,7 +7,9 @@ const Header = ({ isAuth, id = '123' }) => {
     <div className="header">
       <div className="header__wrapper">
         <div className="header__column">
-          <i className="fab fa-youtube"></i>
+          <Link to="/">
+            <i className="fab fa-youtube"></i>
+          </Link>
         </div>
         <div className="header__column">
           <form action="/videos/search" method="get">
@@ -19,22 +21,32 @@ const Header = ({ isAuth, id = '123' }) => {
             {isAuth ? (
               <>
                 <li>
-                  <Link to="/videos/upload">Upload</Link>
+                  <Link to="/videos/upload" className="header__item">
+                    Upload
+                  </Link>
                 </li>
                 <li>
-                  <Link to={`/users/${id}`}>Profile</Link>
+                  <Link to={`/users/${id}`} className="header__item">
+                    Profile
+                  </Link>
                 </li>
                 <li>
-                  <Link to={`/logout`}>Logout</Link>
+                  <Link to={`/logout`} className="header__item">
+                    Logout
+                  </Link>
                 </li>
               </>
             ) : (
               <>
                 <li>
-                  <Link to="/join">Join</Link>
+                  <Link to="/join" className="header__item">
+                    Join
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/login">Log In</Link>
+                  <Link to="/login" className="header__item">
+                    Log In
+                  </Link>
                 </li>
               </>
             )}
