@@ -14,3 +14,11 @@ export const postUpload = video => {
     description,
   });
 };
+
+export const getVideoById = id => {
+  return Video.findById(id);
+};
+
+export const updateVideoById = (id, video) => {
+  return Video.findByIdAndUpdate(id, video);
+};

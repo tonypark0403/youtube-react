@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import SocialLogin from '../social-login';
 
 const Login = ({ setAuth }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('test@test.com');
+  const [password, setPassword] = useState('test');
 
   const handleChange = e => {
     const { name, value } = e.target;

@@ -9,6 +9,7 @@ import Upload from './pages/upload/';
 import EditVideo from './pages/edit-video';
 import UserDetail from './pages/user-detail';
 import Logout from './pages/logout';
+import VideoDetail from './pages/video-detail';
 
 function App() {
   const [isAuth, setAuth] = useState(false);
@@ -39,7 +40,8 @@ function App() {
       <Route exact path="/users/:id" component={UserDetail} />
       <Route exact path="/videos/search" component={Search} />
       <Route exact path="/videos/upload" component={Upload} />
-      <Route exact path="/videos/:id" component={EditVideo} />
+      <Route exact path="/videos/:id" component={VideoDetail} />
+      <Route exact path="/videos/:id/edit" component={EditVideo} />
       <Redirect from="*" to="/" />
     </Switch>
   );
