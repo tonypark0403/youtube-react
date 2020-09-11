@@ -45,6 +45,7 @@ export const logout = (req, res) => {
 
 export const check = (req, res) => {
   let data;
+  console.log('check:', req.user);
   if (req.user) {
     data = {
       name: req.user.name,

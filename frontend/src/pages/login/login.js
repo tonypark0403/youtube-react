@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import SocialLogin from '../social-login';
-import { useHistory } from 'react-router-dom';
 
 const Login = ({ setAuth }) => {
-  const history = useHistory();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('test@test.com');
+  const [password, setPassword] = useState('test');
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -39,12 +37,9 @@ const Login = ({ setAuth }) => {
       .then(res => {
         console.log('from backend data:', res);
         if (res.status === 'ok') {
-          setAuth(res.data.isAuthenticated);
-          setEmail('');
-          setPassword('');
-          setTimeout(() => {
-            history.push('/');
-          }, 1000);
+          setAuth(res.data.isAuthenticated); // true
+          // setEmail(''); // causing error that Can't perform a React state update on an unmounted component. This is a no-op
+          // setPassword('');
         }
       });
   };

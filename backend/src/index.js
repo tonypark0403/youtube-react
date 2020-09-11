@@ -16,9 +16,7 @@ const { PORT } = process.env;
 middlewares(app);
 
 // routing
-// app.use('/uploads', express.static('uploads/'));
-// console.log('/uploads', path.join(__dirname, '../uploads'));
-app.use(express.static(path.join(__dirname, 'uploads')));
+app.use('/public', express.static(path.join(__dirname, '../uploads/videos')));
 app.use(routes.home, globalRouter); // "/"
 app.use(routes.users, userRouter); // "/users"
 app.use(routes.videos, videoRouter); // "/videos"

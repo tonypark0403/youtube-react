@@ -1,4 +1,5 @@
 import Video from '../models/video';
+import * as videoService from '../services/videoService';
 import { returnNormalJson } from '../utils';
 
 export const home = async (req, res) => {
@@ -46,6 +47,19 @@ export const postUpload = async (req, res) => {
   };
   returnNormalJson(res, data);
 };
-export const videoDetail = (req, res) => res.send('Video Detail');
+
+export const videoDetail = async (req, res) => {
+  const { id } = req.params;
+  const video = await videoService.getVideoById(id);
+  returnNormalJson(res, { video });
+};
+
+export const videoUpdate = async (req, res) => {
+  const { id } = req.params;
+  console.log('videoUpdate:', req.body);
+  const video = await videoService.updateVideoById(id, req.body);
+  returnNormalJson(res, { video });
+};
+
 export const editVideo = (req, res) => res.send('Edit Video');
 export const deleteVideo = (req, res) => res.send('Delete Video');
