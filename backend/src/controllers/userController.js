@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import User from '../models/user';
 import { returnNormalJson, returnErrorJson } from '../utils';
 
@@ -38,8 +39,25 @@ export const afterLogin = (req, res, next) => {
   }
 };
 
+const sessionClear = async function () {
+  try {
+    const collection = await mongoose.connection.db.collection('sessions');
+    await collection.deleteMany({}, function (error) {
+      if (error) {
+        console.error('Problem emptying sessions collection:', error);
+      } else {
+        console.log('Emptied sessions collection');
+      }
+    });
+  } catch (error) {
+    console.error('Problem retrieving sessions collection:', error);
+  }
+};
+
 export const logout = (req, res) => {
   req.logout();
+  sessionClear();
+  req.session = null;
   returnNormalJson(res, 'logout successfully');
 };
 

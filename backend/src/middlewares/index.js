@@ -26,7 +26,7 @@ export default app => {
   app.use(
     session({
       cookie: {
-        maxAge: 60 * 1000,
+        maxAge: 60 * 1000 * 2,
       },
       secret: process.env.COOKIE_SECRET,
       resave: true,
